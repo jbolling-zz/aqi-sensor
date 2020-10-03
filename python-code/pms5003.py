@@ -28,20 +28,21 @@ class PMS5003:
                     rv += self.ser.read(28)
                     return rv
 
-with PMS5003('/dev/ttyS0') as sensor:
-    rcv = sensor.read_packet()
-    print(rcv)
-    print(type(rcv))
-    res = {'timestamp': datetime.datetime.now(),
-           'apm10': rcv[4] * 256 + rcv[5],
-           'apm25': rcv[6] * 256 + rcv[7],
-           'apm100': rcv[8] * 256 + rcv[9],
-           'pm10': rcv[10] * 256 + rcv[11],
-           'pm25': rcv[12] * 256 + rcv[13],
-           'pm100': rcv[14] * 256 + rcv[15]
-           }
-    print('==============\n'
-            'PM2.5: {}\n'
-            'PM10:  {}\n'.format(res['apm25'], res['apm100']))
-    print(res)
-    print(type(res['apm25']))
+if __name__ == "__main__":
+    with PMS5003('/dev/ttyS0') as sensor:
+        rcv = sensor.read_packet()
+        print(rcv)
+        print(type(rcv))
+        res = {'timestamp': datetime.datetime.now(),
+               'apm10': rcv[4] * 256 + rcv[5],
+               'apm25': rcv[6] * 256 + rcv[7],
+               'apm100': rcv[8] * 256 + rcv[9],
+               'pm10': rcv[10] * 256 + rcv[11],
+               'pm25': rcv[12] * 256 + rcv[13],
+               'pm100': rcv[14] * 256 + rcv[15]
+               }
+        print('==============\n'
+                'PM2.5: {}\n'
+                'PM10:  {}\n'.format(res['apm25'], res['apm100']))
+        print(res)
+        print(type(res['apm25']))

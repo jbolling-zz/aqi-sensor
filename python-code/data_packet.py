@@ -22,7 +22,8 @@ class DataPacket:
                 'PM10,  ug/m3, standard   : {}\n'
                 'PM1.0, ug/m3, atmospheric: {}\n'
                 'PM2.5, ug/m3, atmospheric: {}\n'
-                'PM10,  ug/m3, atmospheric: {}\n').format(self.amp10,
+                'PM10,  ug/m3, atmospheric: {}\n').format(self.timestamp,
+                                                          self.apm10,
                                                           self.apm25,
                                                           self.apm100,
                                                           self.pm10,
